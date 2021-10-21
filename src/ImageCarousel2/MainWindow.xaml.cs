@@ -23,7 +23,7 @@ namespace ImageCarousel2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string SourceImageDirectory = "C:\\Users\\willr\\Documents\\ImageCarousel\\Pictures\\";
+        private const string SourceImageDirectory = "C:\\ImageCarousel\\Photos";
         private Carousel ImageCarousel;
         private bool IsRunning = true;
         public MainWindow()
