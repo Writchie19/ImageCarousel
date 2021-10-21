@@ -20,30 +20,32 @@ namespace ImageCarousel.Server.EndPoints
         private async Task SetImage(HttpRequest req, HttpResponse res)
         {
             //var result = await req.BindAndSaveFile("C:/Users/willr/Documents/ImageCarousel/", "test.jpg");
-            var result = await req.BindFile();
-            if (result == null)
+            try
             {
+                var result = await req.BindFile();
+                if (result == null)
+                {
+                    res.StatusCode = 500;
+                    return;
+                }
+
+                var saveLocation = "C:/ImageCarousel/Photos/";
+                //var fileName = $"Photo-{DateTime.Now:yyyy-MM-ddTHH-mm-ss-fffffffK}-{Guid.NewGuid()}.jpg";
+                var fileName = $"Photo-{Guid.NewGuid()}.jpg";
+
+                Directory.CreateDirectory(saveLocation);
+
+                fileName = !string.IsNullOrWhiteSpace(fileName) ? fileName : result.FileName;
+
+                using var fileToSave = File.Create(Path.Combine(saveLocation, fileName));
+                await result.CopyToAsync(fileToSave);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
                 res.StatusCode = 500;
                 return;
             }
-            var saveLocation = "C:/Users/willr/Documents/ImageCarousel/";
-            var fileName = "test.jpg";
-            if (!Directory.Exists(saveLocation))
-                Directory.CreateDirectory(saveLocation);
-
-            fileName = !string.IsNullOrWhiteSpace(fileName) ? fileName : result.FileName;
-
-            using (var fileToSave = File.Create(Path.Combine(saveLocation, fileName)))
-                await result.CopyToAsync(fileToSave);
-            //var (result, data) = await req.BindAndValidate<ImageModel>();
-            //if (result.IsFaulted)
-            //{
-            //    res.StatusCode = 422;
-            //    await res.Negotiate(result.GetFormattedErrors());
-            //    return;
-            //}
-
-            // Save image
 
             res.StatusCode = 200;
         }
