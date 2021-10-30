@@ -11,4 +11,9 @@
     <PackageReference Include="Google.Cloud.Storage.V1" Version="3.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="View\" />
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
 </Project>

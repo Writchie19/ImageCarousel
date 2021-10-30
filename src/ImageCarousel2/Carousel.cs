@@ -48,8 +48,12 @@ namespace ImageCarousel2
 
         public void NextImage()
         {
-            CurrentIndex = CurrentIndex < Images.Count() - 1? CurrentIndex + 1 : 0;
-            CurrentImage = Images.ElementAt(CurrentIndex);
+            if (Images.Any())
+            {
+                CurrentIndex = CurrentIndex < Images.Count() - 1? CurrentIndex + 1 : 0;
+                CurrentImage = Images.ElementAt(CurrentIndex);
+            }
+
         }
     }
 }
