@@ -3,6 +3,7 @@ using Carter.ModelBinding;
 using Carter.Response;
 using ImageCarousel.Server.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -11,8 +12,10 @@ namespace ImageCarousel.Server.EndPoints
 {
     public class Images : CarterModule
     {
-        public Images()
+        private readonly ILogger _logger;
+        public Images(ILogger<Images> logger)
         {
+            _logger = logger;
             Get("/api/images", GetImages);
             Post("/api/images", SetImage);
         }
@@ -39,10 +42,13 @@ namespace ImageCarousel.Server.EndPoints
 
                 using var fileToSave = File.Create(Path.Combine(saveLocation, fileName));
                 await result.CopyToAsync(fileToSave);
+
+                _logger.LogInformation($"Saving file: {fileName} to path: {saveLocation}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                _logger.LogError("Failed to save in coming file");
                 res.StatusCode = 500;
                 return;
             }

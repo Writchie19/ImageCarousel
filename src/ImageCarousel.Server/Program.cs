@@ -18,10 +18,16 @@ namespace ImageCarousel.Server
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
                     .UseKestrel()
+                    .UseUrls("http://0.0.0.0:5000")
                     .UseStartup<Startup>();
                 });
     }
