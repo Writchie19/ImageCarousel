@@ -29,6 +29,7 @@ namespace ImageCarousel2
         public MainWindow()
         {
             InitializeComponent();
+            Directory.CreateDirectory(SourceImageDirectory);
             ImageCarousel = new Carousel(Directory.EnumerateFiles(SourceImageDirectory));
             img.Source = ImageCarousel.CurrentImage;
             Task.Run(async () => {
