@@ -9,6 +9,12 @@
         WindowStyle="None" ResizeMode="NoResize"  
         WindowStartupLocation="CenterScreen" 
         WindowState="Maximized"
-        Closing="MainWindow_Closing">
-    <Image x:Name="img"/>
+    Closing="MainWindow_Closing">
+        <Window.Background>
+            <ImageBrush ImageSource="/ImageCarousel2;component/Images/halloweenbackground.jpg" Stretch="Fill" />
+        </Window.Background>
+        <Grid>
+            <Image Grid.Column="1"  x:Name="img" Height="auto" Width="1000"/>
+        </Grid>
+
 </Window>
