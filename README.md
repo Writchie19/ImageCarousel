@@ -28,6 +28,7 @@ This project was created for a quick fun thing to do at a halloween party. I did
 ### General
 - Change the name of the projects
 - Refactor everything so it doesn't look like it was created in a few hours ;)
+- Create Installers
 
 ### Server/Client
 - Add a settings page for the server (ImageCarousel.Client)
