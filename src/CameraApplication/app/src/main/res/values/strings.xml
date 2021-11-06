@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CameraApplication</string>
+    <string name="camera">Camera</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="settings">Settings</string>
+    <string name="ip_address">Ip Address:</string>
+    <string name="port_key">PortKey</string>
+    <string name="ip_address_key">IpAddressKey</string>
+    <string name="port">Port:</string>
+    <string name="default_ip_address">192.168.1.113</string>
+    <string name="default_port">5000</string>
+    <string name="save">Save</string>
+    <string name="preference_file_key">AppSettingsSecretKey:)</string>
+</resources>
